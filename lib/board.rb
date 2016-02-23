@@ -26,10 +26,21 @@ class Board
     board.column(index).to_a
   end
 
+  def diag
+    board.each(:diagonal).to_a
+  end
+
+  def inv_diag
+    mirror.diag
+  end
+
   private
 
   attr_reader :board
 
+  def mirror
+    Board.new(board.to_a.map { |row| row.reverse })
+  end
 
   def row_from(index)
     index / board.column_count

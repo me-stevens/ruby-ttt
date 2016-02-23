@@ -33,4 +33,12 @@ describe Board do
     expect(board.col(0)).to eq([X, O, O])
   end
 
+  it "gets the diagonal of the board" do
+    expect(board.diag).to eq([X, X, X])
+  end
+
+  it "gets the inverse diagonal of the board" do
+    expect(board.inv_diag).to eq([X, X, O])
+  end
+
 end
