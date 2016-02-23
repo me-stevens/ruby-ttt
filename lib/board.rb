@@ -45,7 +45,7 @@ class Board
   end
 
   def win?(player_mark)
-    win_in_rows(player_mark) || win_in_cols(player_mark) || win_in_diag(player_mark) || win_in_inv_diag(player_mark)
+    win_in_rows(player_mark) || win_in_cols(player_mark) || win_in(diag, player_mark) || win_in(inv_diag, player_mark)
   end
 
   private
@@ -68,34 +68,19 @@ class Board
     index = row * board.column_count + col
   end
 
-  def win_in_row(index, mark)
-    row(index).each { |cell| return false if cell != mark }
+  def win_in(line, mark)
+    line.each { |cell| return false if cell != mark }
     true
   end
 
   def win_in_rows(mark)
-    (0...size).each { |index| return true if win_in_row(index, mark) }
+    (0...size).each { |index| return true if win_in(row(index), mark) }
     false
-  end
-
-  def win_in_col(index, mark)
-    col(index).each { |cell| return false if cell != mark }
-    true
   end
 
   def win_in_cols(mark)
-    (0...size).each { |index| return true if win_in_col(index, mark) }
+    (0...size).each { |index| return true if win_in(col(index), mark) }
     false
-  end
-
-  def win_in_diag(mark)
-    diag.each { |cell| return false if cell != mark }
-    true
-  end
-
-  def win_in_inv_diag(mark)
-    inv_diag.each { |cell| return false if cell != mark }
-    true
   end
 
 end

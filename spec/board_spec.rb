@@ -56,7 +56,7 @@ describe Board do
     expect(board.win?(X)).to eq(true)
   end
 
-  it "detects a non win in a row" do
+  it "detects a non-win in a row" do
     expect(board.win?(O)).to eq(false)
   end
 
@@ -65,7 +65,7 @@ describe Board do
     expect(board.win?(X)).to eq(true)
   end
 
-  it "detects a non win in a column" do
+  it "detects a non-win in a column" do
     expect(board.win?(O)).to eq(false)
   end
 
@@ -73,7 +73,7 @@ describe Board do
     expect(board.win?(X)).to eq(true)
   end
 
-  it "detects a non win in a diagonal" do
+  it "detects a non-win in a diagonal" do
     expect(board.win?(O)).to eq(false)
   end
 
@@ -86,7 +86,7 @@ describe Board do
     expect(board.win?(X)).to eq(true)
   end
 
-  it "detects a non win in the inverse diagonal" do
+  it "detects a non-win in the inverse diagonal" do
     expect(board.win?(O)).to eq(false)
   end
 
