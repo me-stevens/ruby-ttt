@@ -34,6 +34,16 @@ class Board
     mirror.diag
   end
 
+  def cells_with(content)
+    indexes = []
+    board.each_with_index { |cell, row, col| indexes << index_from(row, col) if cell == content }
+    indexes
+  end
+
+  def full?(empty_mark)
+    cells_with(empty_mark).size == 0
+  end
+
   private
 
   attr_reader :board
@@ -48,6 +58,10 @@ class Board
 
   def col_from(index)
     index % board.column_count
+  end
+
+  def index_from(row, col)
+    index = row * board.column_count + col
   end
 
 end

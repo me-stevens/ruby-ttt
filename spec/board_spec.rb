@@ -41,4 +41,14 @@ describe Board do
     expect(board.inv_diag).to eq([X, X, O])
   end
 
+  it "gets the indexes of a type of cell" do
+    board = Board.new([[X, E, E], [E, E, E], [E, E, E]])
+    expect(board.cells_with(X)).to eq([0])
+    expect(board.cells_with(E)).to eq([1, 2, 3, 4, 5, 6, 7, 8])
+  end
+
+  it "detects a full board" do
+    expect(board.full?(E)).to eq(true)
+  end
+
 end
