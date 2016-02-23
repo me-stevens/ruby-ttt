@@ -51,4 +51,43 @@ describe Board do
     expect(board.full?(E)).to eq(true)
   end
 
+  it "detects a win in a row" do
+    board = Board.new([[X, X, X], [E, E, E], [E, E, E]])
+    expect(board.win?(X)).to eq(true)
+  end
+
+  it "detects a non win in a row" do
+    expect(board.win?(O)).to eq(false)
+  end
+
+  it "detects a win in a column" do
+    board = Board.new([[X, E, E], [X, E, E], [X, E, E]])
+    expect(board.win?(X)).to eq(true)
+  end
+
+  it "detects a non win in a column" do
+    expect(board.win?(O)).to eq(false)
+  end
+
+  it "detects a win in a diagonal" do
+    expect(board.win?(X)).to eq(true)
+  end
+
+  it "detects a non win in a diagonal" do
+    expect(board.win?(O)).to eq(false)
+  end
+
+  it "detects a win in the inverse diagonal" do
+    board = Board.new([
+      [E, E, X],
+      [E, X, E],
+      [X, E, E]
+    ])
+    expect(board.win?(X)).to eq(true)
+  end
+
+  it "detects a non win in the inverse diagonal" do
+    expect(board.win?(O)).to eq(false)
+  end
+
 end
