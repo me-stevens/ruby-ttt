@@ -21,4 +21,8 @@ describe Board do
     expect(board.total_cells).to eq(9)
   end
 
+  it "gets cell by index" do
+    expect(board.cell(0)).to eq(X)
+  end
+
 end
