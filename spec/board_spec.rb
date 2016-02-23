@@ -25,4 +25,12 @@ describe Board do
     expect(board.cell(0)).to eq(X)
   end
 
+  it "gets a row of the board" do
+    expect(board.row(0)).to eq([X, O, X])
+  end
+
+  it "gets a column of the board" do
+    expect(board.col(0)).to eq([X, O, O])
+  end
+
 end

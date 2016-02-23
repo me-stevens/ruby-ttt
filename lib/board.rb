@@ -18,6 +18,14 @@ class Board
     board[row_from(index), col_from(index)]
   end
 
+  def row(index)
+    board.row(index).to_a
+  end
+
+  def col(index)
+    board.column(index).to_a
+  end
+
   private
 
   attr_reader :board
