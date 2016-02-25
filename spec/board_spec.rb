@@ -42,6 +42,15 @@ describe Board do
     expect(board.inv_diag).to eq([x, x, o])
   end
 
+  it "gets the whole board" do
+    expected = Matrix.rows([
+      [x, o, x],
+      [o, x, o],
+      [o, o, x]
+    ])
+    expect(board.all).to eq(expected)
+  end
+
   it "gets the indexes of a type of cell" do
     board = Board.new([[x, e, e], [e, e, e], [e, e, e]])
     expect(board.cells_with(x)).to eq([0])

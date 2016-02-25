@@ -34,6 +34,10 @@ class Board
     mirror.diag
   end
 
+  def all
+    board
+  end
+
   def cells_with(content)
     indexes = []
     board.each_with_index { |cell, row, col| indexes << index_from(row, col) if cell == content }
