@@ -1,5 +1,6 @@
 class UI
 
+  CELL = "\nChoose a cell to place the mark: "
   ERROR_WRONG_INPUT = "ERROR: Wrong input. Please try again: "
 
   def initialize(console, validator)
@@ -13,13 +14,7 @@ class UI
   end
 
   def read_cell(board)
-    cell = ""
-    loop do
-      cell = read
-      break if valid_cell?(board.total_cells, cell)
-      error_wrong_input
-    end
-    Integer(cell) - 1
+    Integer(valid_cell(board)) - 1
   end
 
   private
@@ -38,13 +33,28 @@ class UI
     console.writeln(message)
   end
 
+  def is_valid_cell?(cell_count, cell)
+    validator.is_valid_cell?(cell_count, cell)
+  end
+
   def format_cells(board)
     i = 0
     Board.new(board.all.collect { |cell| i += 1; cell == :E ? i : cell }.to_a)
   end
 
-  def valid_cell?(total_cells, cell)
-    validator.valid_cell?(total_cells, cell)
+  def ask_for(question)
+    print(question)
+    read
+  end
+
+  def valid_cell(board)
+    cell = ask_for(CELL)
+    loop do
+      break if is_valid_cell?(board.cell_count, cell)
+      error_wrong_input
+      cell = read
+    end
+    cell
   end
 
   def error_wrong_input

@@ -30,6 +30,12 @@ describe UI do
     expect(output.string).to eq("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
   end
 
+  it "prints the prompt for a cell index" do
+    input.string = "1\n"
+    ui.read_cell(board)
+    expect(output.string).to include(UI::CELL)
+  end
+
   it "reads a cell index from prompt" do
     input.string = "1\n"
     expect(ui.read_cell(board)).to eq(0)

@@ -10,7 +10,7 @@ class Board
     board.row_count
   end
 
-  def total_cells
+  def cell_count
     size * size
   end
 
@@ -26,30 +26,30 @@ class Board
     board.column(index).to_a
   end
 
-  def diag
+  def diagonal
     board.each(:diagonal).to_a
   end
 
-  def inv_diag
-    mirror.diag
+  def inv_diagonal
+    mirror.diagonal
   end
 
   def all
     board
   end
 
-  def cells_with(content)
+  def indexes_of(content)
     indexes = []
     board.each_with_index { |cell, row, col| indexes << index_from(row, col) if cell == content }
     indexes
   end
 
   def full?(empty_mark)
-    cells_with(empty_mark).size == 0
+    indexes_of(empty_mark).count == 0
   end
 
   def win?(player_mark)
-    win_in_rows(player_mark) || win_in_cols(player_mark) || win_in(diag, player_mark) || win_in(inv_diag, player_mark)
+    win_in_rows(player_mark) || win_in_cols(player_mark) || win_in(diagonal, player_mark) || win_in(inv_diagonal, player_mark)
   end
 
   private

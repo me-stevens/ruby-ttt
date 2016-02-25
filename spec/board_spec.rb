@@ -19,7 +19,7 @@ describe Board do
   end
 
   it "has a total amount of 9 cells if it is a 3x3 board" do
-    expect(board.total_cells).to eq(9)
+    expect(board.cell_count).to eq(9)
   end
 
   it "gets cell by index" do
@@ -35,26 +35,21 @@ describe Board do
   end
 
   it "gets the diagonal of the board" do
-    expect(board.diag).to eq([x, x, x])
+    expect(board.diagonal).to eq([x, x, x])
   end
 
   it "gets the inverse diagonal of the board" do
-    expect(board.inv_diag).to eq([x, x, o])
+    expect(board.inv_diagonal).to eq([x, x, o])
   end
 
   it "gets the whole board" do
-    expected = Matrix.rows([
-      [x, o, x],
-      [o, x, o],
-      [o, o, x]
-    ])
-    expect(board.all).to eq(expected)
+    expect(board.all).to eq(Matrix.rows(rows))
   end
 
   it "gets the indexes of a type of cell" do
     board = Board.new([[x, e, e], [e, e, e], [e, e, e]])
-    expect(board.cells_with(x)).to eq([0])
-    expect(board.cells_with(e)).to eq([1, 2, 3, 4, 5, 6, 7, 8])
+    expect(board.indexes_of(x)).to eq([0])
+    expect(board.indexes_of(e)).to eq([1, 2, 3, 4, 5, 6, 7, 8])
   end
 
   it "detects a full board" do
