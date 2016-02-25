@@ -1,12 +1,13 @@
 require 'console'
 require 'ui'
 require 'board'
+require 'marks'
 
 describe UI do
 
-  X = :X
-  O = :O
-  E = :E
+  let(:x) {Marks::X}
+  let(:o) {Marks::O}
+  let(:e) {Marks::E}
 
   let(:input)  {StringIO.new}
   let(:output) {StringIO.new}
@@ -14,9 +15,9 @@ describe UI do
 
   it "prints a board with format" do
     board = Board.new([
-      [X, O, X],
-      [O, X, O],
-      [O, O, X]
+      [x, o, x],
+      [o, x, o],
+      [o, o, x]
     ])
     ui.print_board(board)
     expect(output.string).to eq("X\tO\tX\nO\tX\tO\nO\tO\tX\n")

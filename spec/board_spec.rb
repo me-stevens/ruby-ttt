@@ -1,15 +1,16 @@
 require 'board'
+require 'marks'
 
 describe Board do
 
-  X = :X
-  O = :O
-  E = :E
+  let(:x) {Marks::X}
+  let(:o) {Marks::O}
+  let(:e) {Marks::E}
 
   let(:rows) {[
-    [X, O, X],
-    [O, X, O],
-    [O, O, X]
+    [x, o, x],
+    [o, x, o],
+    [o, o, x]
   ]}
   let(:board) {described_class.new(rows)}
 
@@ -22,72 +23,72 @@ describe Board do
   end
 
   it "gets cell by index" do
-    expect(board.cell(0)).to eq(X)
+    expect(board.cell(0)).to eq(x)
   end
 
   it "gets a row of the board" do
-    expect(board.row(0)).to eq([X, O, X])
+    expect(board.row(0)).to eq([x, o, x])
   end
 
   it "gets a column of the board" do
-    expect(board.col(0)).to eq([X, O, O])
+    expect(board.col(0)).to eq([x, o, o])
   end
 
   it "gets the diagonal of the board" do
-    expect(board.diag).to eq([X, X, X])
+    expect(board.diag).to eq([x, x, x])
   end
 
   it "gets the inverse diagonal of the board" do
-    expect(board.inv_diag).to eq([X, X, O])
+    expect(board.inv_diag).to eq([x, x, o])
   end
 
   it "gets the indexes of a type of cell" do
-    board = Board.new([[X, E, E], [E, E, E], [E, E, E]])
-    expect(board.cells_with(X)).to eq([0])
-    expect(board.cells_with(E)).to eq([1, 2, 3, 4, 5, 6, 7, 8])
+    board = Board.new([[x, e, e], [e, e, e], [e, e, e]])
+    expect(board.cells_with(x)).to eq([0])
+    expect(board.cells_with(e)).to eq([1, 2, 3, 4, 5, 6, 7, 8])
   end
 
   it "detects a full board" do
-    expect(board.full?(E)).to eq(true)
+    expect(board.full?(e)).to eq(true)
   end
 
   it "detects a win in a row" do
-    board = Board.new([[X, X, X], [E, E, E], [E, E, E]])
-    expect(board.win?(X)).to eq(true)
+    board = Board.new([[x, x, x], [e, e, e], [e, e, e]])
+    expect(board.win?(x)).to eq(true)
   end
 
   it "detects a non-win in a row" do
-    expect(board.win?(O)).to eq(false)
+    expect(board.win?(o)).to eq(false)
   end
 
   it "detects a win in a column" do
-    board = Board.new([[X, E, E], [X, E, E], [X, E, E]])
-    expect(board.win?(X)).to eq(true)
+    board = Board.new([[x, e, e], [x, e, e], [x, e, e]])
+    expect(board.win?(x)).to eq(true)
   end
 
   it "detects a non-win in a column" do
-    expect(board.win?(O)).to eq(false)
+    expect(board.win?(o)).to eq(false)
   end
 
   it "detects a win in a diagonal" do
-    expect(board.win?(X)).to eq(true)
+    expect(board.win?(x)).to eq(true)
   end
 
   it "detects a non-win in a diagonal" do
-    expect(board.win?(O)).to eq(false)
+    expect(board.win?(o)).to eq(false)
   end
 
   it "detects a win in the inverse diagonal" do
     board = Board.new([
-      [E, E, X],
-      [E, X, E],
-      [X, E, E]
+      [e, e, x],
+      [e, x, e],
+      [x, e, e]
     ])
-    expect(board.win?(X)).to eq(true)
+    expect(board.win?(x)).to eq(true)
   end
 
   it "detects a non-win in the inverse diagonal" do
-    expect(board.win?(O)).to eq(false)
+    expect(board.win?(o)).to eq(false)
   end
 
 end
