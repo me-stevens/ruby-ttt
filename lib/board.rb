@@ -31,7 +31,7 @@ class Board
   end
 
   def inv_diagonal
-    mirror.diagonal
+    reverse.diagonal
   end
 
   def all
@@ -42,6 +42,12 @@ class Board
     indexes = []
     board.each_with_index { |cell, row, col| indexes << index_from(row, col) if cell == content }
     indexes
+  end
+
+  def place_mark(cell, mark)
+    new_rows = board.to_a.map { |row| row }
+    new_rows[row_from(cell)][col_from(cell)] = mark
+    Board.new(new_rows)
   end
 
   def full?(empty_mark)
@@ -56,7 +62,7 @@ class Board
 
   attr_reader :board
 
-  def mirror
+  def reverse
     Board.new(board.to_a.map { |row| row.reverse })
   end
 

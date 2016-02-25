@@ -52,6 +52,15 @@ describe Board do
     expect(board.indexes_of(e)).to eq([1, 2, 3, 4, 5, 6, 7, 8])
   end
 
+  it "places a mark in the board" do
+    updated_rows = [
+      [o, o, x],
+      [o, x, o],
+      [o, o, x]
+    ]
+    expect(board.place_mark(0, o).all).to eq(Matrix.rows(updated_rows))
+  end
+
   it "detects a full board" do
     expect(board.full?(e)).to eq(true)
   end
