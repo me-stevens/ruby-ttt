@@ -5,11 +5,20 @@ class UI
   end
 
   def print_board(board)
-    (0...board.size).each { |i| console.writeln(board.row(i).join("\t")) }
+    board = format_cells(board)
+    (0...board.size).each { |i| println(board.row(i).join("\t")) }
   end
 
   private
 
-  attr_reader :console
+
+  def println(message)
+    console.writeln(message)
+  end
+
+  def format_cells(board)
+    i = 0
+    Board.new(board.all.collect { |cell| i += 1; cell == :E ? i : cell }.to_a)
+  end
 
 end

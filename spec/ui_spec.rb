@@ -23,4 +23,10 @@ describe UI do
     expect(output.string).to eq("X\tO\tX\nO\tX\tO\nO\tO\tX\n")
   end
 
+  it "prints corresponding index if a cell is empty" do
+    board = Board.new([[e, e, e], [e, e, e], [e, e, e]])
+    ui.print_board(board)
+    expect(output.string).to eq("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
+  end
+
 end
