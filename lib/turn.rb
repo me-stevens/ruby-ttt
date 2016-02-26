@@ -4,7 +4,7 @@ class Turn
     @ui = ui
   end
 
-  def play(board, mark)
+  def play_next_turn(board, mark)
     @board = board
     print_board
     place_mark(read_cell, mark)
