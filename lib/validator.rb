@@ -1,15 +1,13 @@
 class Validator
 
-  def is_valid_cell?(cell_count, input)
-    valid_cells(cell_count).include? input
+  def is_valid_cell?(empty_cells, input)
+    valid_cells(empty_cells).include? input
   end
 
   private
 
-  def valid_cells(cell_count)
-    inputs = []
-    (1..cell_count).each { |i| inputs << i.to_s }
-    inputs
+  def valid_cells(empty_cells)
+    empty_cells.map { |empty_cell_index| (empty_cell_index + 1).to_s }
   end
 
 end

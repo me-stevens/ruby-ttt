@@ -37,8 +37,8 @@ class UI
     console.writeln(message)
   end
 
-  def is_valid_cell?(cell_count, cell)
-    validator.is_valid_cell?(cell_count, cell)
+  def is_valid_cell?(board, cell)
+    validator.is_valid_cell?(board.indexes_of(E), cell)
   end
 
   def format_cells(board)
@@ -54,7 +54,7 @@ class UI
   def valid_cell(board)
     cell = ask_for(CELL)
     loop do
-      break if is_valid_cell?(board.cell_count, cell)
+      break if is_valid_cell?(board, cell)
       error_wrong_input
       cell = read
     end

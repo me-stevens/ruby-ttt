@@ -1,26 +1,26 @@
+require 'board'
 require 'console'
 require 'validator'
 require 'ui'
-require 'board'
 
 describe UI do
 
-  let(:board)  {Board.new([
-    [:X, :O, :X],
-    [:O, :X, :O],
-    [:O, :O, :X]
-  ])}
+  let(:board)  {Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])}
   let(:input)  {StringIO.new}
   let(:output) {StringIO.new}
   let(:ui)     {described_class.new(Console.new(input, output), Validator.new)}
 
   it "prints a board with format" do
+    board = Board.new([
+      [:X, :O, :X],
+      [:O, :X, :O],
+      [:O, :O, :X]
+    ])
     ui.print_board(board)
     expect(output.string).to eq("X\tO\tX\nO\tX\tO\nO\tO\tX\n")
   end
 
   it "prints corresponding index if a cell is empty" do
-    board = Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])
     ui.print_board(board)
     expect(output.string).to eq("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
   end
