@@ -48,4 +48,15 @@ describe UI do
     expect(output.string.scan(UI::ERROR_WRONG_INPUT).size).to eq(4)
   end
 
+  it "prints a win message" do
+    ui.print_win_message(:X)
+    expect(output.string).to include(UI::WIN)
+    expect(output.string).to include(:X.to_s)
+  end
+
+  it "prints a draw message" do
+    ui.print_draw_message
+    expect(output.string).to eq(UI::DRAW)
+  end
+
 end

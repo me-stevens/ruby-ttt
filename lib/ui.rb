@@ -5,6 +5,9 @@ class UI
   include Marks
 
   CELL = "\nChoose a cell to place the mark: "
+  WIN  = "\nCongratulations, "
+  DRAW = "\nIt's a draw!"
+
   ERROR_WRONG_INPUT = "ERROR: Wrong input. Please try again: "
 
   def initialize(console, validator)
@@ -19,6 +22,14 @@ class UI
 
   def read_cell(board)
     Integer(valid_cell(board)) - 1
+  end
+
+  def print_win_message(mark)
+    print(WIN << mark.to_s)
+  end
+
+  def print_draw_message
+    print(DRAW)
   end
 
   private
