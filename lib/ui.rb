@@ -1,4 +1,8 @@
+require 'marks'
+
 class UI
+
+  include Marks
 
   CELL = "\nChoose a cell to place the mark: "
   ERROR_WRONG_INPUT = "ERROR: Wrong input. Please try again: "
@@ -39,7 +43,7 @@ class UI
 
   def format_cells(board)
     i = 0
-    Board.new(board.all.collect { |cell| i += 1; cell == :E ? i : cell }.to_a)
+    Board.new(board.all.collect { |cell| i += 1; cell == E ? i : cell }.to_a)
   end
 
   def ask_for(question)

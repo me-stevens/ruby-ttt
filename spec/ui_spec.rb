@@ -2,18 +2,13 @@ require 'console'
 require 'validator'
 require 'ui'
 require 'board'
-require 'marks'
 
 describe UI do
 
-  let(:x) {Marks::X}
-  let(:o) {Marks::O}
-  let(:e) {Marks::E}
-
   let(:board)  {Board.new([
-    [x, o, x],
-    [o, x, o],
-    [o, o, x]
+    [:X, :O, :X],
+    [:O, :X, :O],
+    [:O, :O, :X]
   ])}
   let(:input)  {StringIO.new}
   let(:output) {StringIO.new}
@@ -25,7 +20,7 @@ describe UI do
   end
 
   it "prints corresponding index if a cell is empty" do
-    board = Board.new([[e, e, e], [e, e, e], [e, e, e]])
+    board = Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])
     ui.print_board(board)
     expect(output.string).to eq("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
   end
