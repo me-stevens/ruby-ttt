@@ -12,12 +12,12 @@ describe UI do
 
   it "clears the screen" do
     ui.clear
-    expect(output.string).to eq(UI::CLEAR)
+    expect_to_print(UI::CLEAR)
   end
 
   it "clears the screen before printing the board" do
     ui.print_board(board)
-    expect(output.string).to include(UI::CLEAR)
+    expect_to_include(UI::CLEAR)
   end
 
   it "prints a board with format" do
@@ -27,25 +27,25 @@ describe UI do
       [:O, :O, :X]
     ])
     ui.print_board(board)
-    expect(output.string).to include("X\tO\tX\nO\tX\tO\nO\tO\tX\n")
+    expect_to_include("X\tO\tX\nO\tX\tO\nO\tO\tX\n")
   end
 
   it "prints corresponding index if a cell is empty" do
     ui.print_board(board)
-    expect(output.string).to include("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
+    expect_to_include("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
   end
 
   it "prints whose turn is it when asking for a cell" do
     input.string = "1\n"
     ui.read_cell(board, :X)
-    expect(output.string).to include(UI::TURN)
-    expect(output.string).to include(:X.to_s)
+    expect_to_include(UI::TURN)
+    expect_to_include(:X.to_s)
   end
 
   it "prints the prompt for a cell index" do
     input.string = "1\n"
     ui.read_cell(board, :X)
-    expect(output.string).to include(UI::CELL)
+    expect_to_include(UI::CELL)
   end
 
   it "reads a cell index from prompt" do
@@ -56,7 +56,7 @@ describe UI do
   it "prints an error message if wrong cell index" do
     input.string = "asdf\n1\n"
     ui.read_cell(board, :X)
-    expect(output.string).to include(UI::ERROR_WRONG_INPUT)
+    expect_to_include(UI::ERROR_WRONG_INPUT)
   end
 
   it "keeps asking until valid cell index" do
@@ -67,13 +67,21 @@ describe UI do
 
   it "prints a win message" do
     ui.print_win_message(:X)
-    expect(output.string).to include(UI::WIN)
-    expect(output.string).to include(:X.to_s)
+    expect_to_include(UI::WIN)
+    expect_to_include(:X.to_s)
   end
 
   it "prints a draw message" do
     ui.print_draw_message
-    expect(output.string).to include(UI::DRAW)
+    expect_to_include(UI::DRAW)
+  end
+
+  def expect_to_print(message)
+    expect(output.string).to eq(message)
+  end
+
+  def expect_to_include(message)
+    expect(output.string).to include(message)
   end
 
 end
