@@ -14,6 +14,7 @@ class Game
   def play
     play_until_game_over
     print_game_over_message
+    clear_board
   end
 
   private
@@ -38,6 +39,10 @@ class Game
 
   def full?
     board.full?(E)
+  end
+
+  def clear_board
+    @board = board.clear(E)
   end
 
   def play_next_turn

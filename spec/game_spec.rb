@@ -53,4 +53,10 @@ describe Game do
     expect(ui).to have_received(:print_board).once.with(board)
   end
 
+  it "clears the board when game is over" do
+    allow(board).to receive(:win?).and_return(true)
+    game.play
+    expect(board).to have_received(:clear).once
+  end
+
 end

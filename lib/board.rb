@@ -58,6 +58,10 @@ class Board
     win_in_rows(player_mark) || win_in_cols(player_mark) || win_in(diagonal, player_mark) || win_in(inv_diagonal, player_mark)
   end
 
+  def clear(empty_mark)
+    Board.new(Matrix.build(size) { empty_mark }.to_a)
+  end
+
   private
 
   attr_reader :board

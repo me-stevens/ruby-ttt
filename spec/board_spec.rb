@@ -99,4 +99,9 @@ describe Board do
     expect(board.win?(:O)).to eq(false)
   end
 
+  it "clears the board" do
+    empty = Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])
+    expect(board.clear(:E).all).to eq(empty.all)
+  end
+
 end
