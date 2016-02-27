@@ -7,7 +7,7 @@ class Turn
   def play_next_turn(board, mark)
     @board = board
     print_board
-    place_mark(read_cell, mark)
+    place_mark(mark)
   end
 
   private
@@ -18,12 +18,12 @@ class Turn
     ui.print_board(board)
   end
 
-  def read_cell
-    ui.read_cell(board)
+  def read_cell(mark)
+    ui.read_cell(board, mark)
   end
 
-  def place_mark(cell, mark)
-    board.place_mark(cell, mark)
+  def place_mark(mark)
+    board.place_mark(read_cell(mark), mark)
   end
 
 end

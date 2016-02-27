@@ -4,6 +4,7 @@ class UI
 
   include Marks
 
+  TURN = "\nTURN OF "
   CELL = "\nChoose a cell to place the mark: "
   WIN  = "\nCongratulations, "
   DRAW = "\nIt's a draw!"
@@ -21,12 +22,13 @@ class UI
     (0...board.size).each { |i| println(board.row(i).join("\t")) }
   end
 
-  def read_cell(board)
+  def read_cell(board, mark)
+    print(TURN + mark.to_s)
     Integer(valid_cell(board)) - 1
   end
 
   def print_win_message(mark)
-    println(WIN << mark.to_s)
+    println(WIN + mark.to_s)
   end
 
   def print_draw_message

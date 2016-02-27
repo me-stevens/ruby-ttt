@@ -20,7 +20,7 @@ describe Turn do
 
   it "asks the user for a cell to place the mark" do
     turn.play_next_turn(board, mark)
-    expect(ui).to have_received(:read_cell).with(board)
+    expect(ui).to have_received(:read_cell).with(board, mark)
   end
 
   it "places the mark in the board" do

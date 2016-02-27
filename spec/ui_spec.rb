@@ -25,26 +25,33 @@ describe UI do
     expect(output.string).to eq("\n1\t2\t3\n4\t5\t6\n7\t8\t9\n")
   end
 
+  it "prints whose turn is it when asking for a cell" do
+    input.string = "1\n"
+    ui.read_cell(board, :X)
+    expect(output.string).to include(UI::TURN)
+    expect(output.string).to include(:X.to_s)
+  end
+
   it "prints the prompt for a cell index" do
     input.string = "1\n"
-    ui.read_cell(board)
+    ui.read_cell(board, :X)
     expect(output.string).to include(UI::CELL)
   end
 
   it "reads a cell index from prompt" do
     input.string = "1\n"
-    expect(ui.read_cell(board)).to eq(0)
+    expect(ui.read_cell(board, :X)).to eq(0)
   end
 
   it "prints an error message if wrong cell index" do
     input.string = "asdf\n1\n"
-    ui.read_cell(board)
+    ui.read_cell(board, :X)
     expect(output.string).to include(UI::ERROR_WRONG_INPUT)
   end
 
   it "keeps asking until valid cell index" do
     input.string = "asdf\n-1\n0\n1000\n1\n"
-    expect(ui.read_cell(board)).to eq(0)
+    expect(ui.read_cell(board, :X)).to eq(0)
     expect(output.string.scan(UI::ERROR_WRONG_INPUT).size).to eq(4)
   end
 
