@@ -17,12 +17,12 @@ describe UI do
       [:O, :O, :X]
     ])
     ui.print_board(board)
-    expect(output.string).to eq("X\tO\tX\nO\tX\tO\nO\tO\tX\n")
+    expect(output.string).to eq("\nX\tO\tX\nO\tX\tO\nO\tO\tX\n")
   end
 
   it "prints corresponding index if a cell is empty" do
     ui.print_board(board)
-    expect(output.string).to eq("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
+    expect(output.string).to eq("\n1\t2\t3\n4\t5\t6\n7\t8\t9\n")
   end
 
   it "prints the prompt for a cell index" do
@@ -56,7 +56,7 @@ describe UI do
 
   it "prints a draw message" do
     ui.print_draw_message
-    expect(output.string).to eq(UI::DRAW)
+    expect(output.string).to include(UI::DRAW)
   end
 
 end

@@ -17,6 +17,7 @@ class UI
 
   def print_board(board)
     board = format_cells(board)
+    println
     (0...board.size).each { |i| println(board.row(i).join("\t")) }
   end
 
@@ -25,11 +26,11 @@ class UI
   end
 
   def print_win_message(mark)
-    print(WIN << mark.to_s)
+    println(WIN << mark.to_s)
   end
 
   def print_draw_message
-    print(DRAW)
+    println(DRAW)
   end
 
   private
