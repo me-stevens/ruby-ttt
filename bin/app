@@ -10,11 +10,14 @@ require 'turn'
 require 'board'
 require 'game'
 
+require 'ttt'
+
 include Marks
 
 ui    = UI.new(Console.new($stdin, $stdout), Validator.new)
 board = Board.new([[E, E, E], [E, E, E], [E, E, E]])
 turn  = Turn.new(ui)
 game  = Game.new(ui, board, turn)
+ttt   = TTT.new(ui, game)
 
-game.play
+ttt.run
