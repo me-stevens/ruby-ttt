@@ -4,6 +4,7 @@ class UI
 
   include Marks
 
+  CLEAR = "\033[H\033[2J"
   TURN = "\nTURN OF "
   CELL = "\nChoose a cell to place the mark: "
   WIN  = "\nCongratulations, "
@@ -16,9 +17,13 @@ class UI
     @validator = validator
   end
 
+  def clear
+    print(CLEAR)
+  end
+
   def print_board(board)
+    clear
     board = format_cells(board)
-    println
     (0...board.size).each { |i| println(board.row(i).join("\t")) }
   end
 

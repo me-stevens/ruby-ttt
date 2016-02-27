@@ -10,6 +10,16 @@ describe UI do
   let(:output) {StringIO.new}
   let(:ui)     {described_class.new(Console.new(input, output), Validator.new)}
 
+  it "clears the screen" do
+    ui.clear
+    expect(output.string).to eq(UI::CLEAR)
+  end
+
+  it "clears the screen before printing the board" do
+    ui.print_board(board)
+    expect(output.string).to include(UI::CLEAR)
+  end
+
   it "prints a board with format" do
     board = Board.new([
       [:X, :O, :X],
@@ -17,12 +27,12 @@ describe UI do
       [:O, :O, :X]
     ])
     ui.print_board(board)
-    expect(output.string).to eq("\nX\tO\tX\nO\tX\tO\nO\tO\tX\n")
+    expect(output.string).to include("X\tO\tX\nO\tX\tO\nO\tO\tX\n")
   end
 
   it "prints corresponding index if a cell is empty" do
     ui.print_board(board)
-    expect(output.string).to eq("\n1\t2\t3\n4\t5\t6\n7\t8\t9\n")
+    expect(output.string).to include("1\t2\t3\n4\t5\t6\n7\t8\t9\n")
   end
 
   it "prints whose turn is it when asking for a cell" do
