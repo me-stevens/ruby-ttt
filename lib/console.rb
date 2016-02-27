@@ -5,11 +5,11 @@ class Console
     @output = output
   end
 
-  def write(message)
+  def write(message = "")
     output.print(message)
   end
 
-  def writeln(message = "")
+  def writeln(message = "\n")
     output.puts(message)
   end
 

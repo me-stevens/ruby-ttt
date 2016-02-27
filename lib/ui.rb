@@ -44,7 +44,7 @@ class UI
     console.write(message)
   end
 
-  def println(message)
+  def println(message = "")
     console.writeln(message)
   end
 
