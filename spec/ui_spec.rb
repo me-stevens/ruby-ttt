@@ -76,6 +76,32 @@ describe UI do
     expect_to_include(UI::DRAW)
   end
 
+  it "prints the prompt message for replaying" do
+    input.string = "\n"
+    ui.replay?
+    expect_to_print(UI::REPLAY)
+  end
+
+  it "reads a positive answer to replay" do
+    input.string = UI::YES
+    expect(ui.replay?).to eq(true)
+  end
+
+  it "reads a positive answer to replay, case insensitive" do
+    input.string = UI::YES.upcase
+    expect(ui.replay?).to eq(true)
+  end
+
+  it "reads a negative answer to replay" do
+    input.string = "\n"
+    expect(ui.replay?).to eq(false)
+  end
+
+  it "prints a good bye message" do
+    ui.bye
+    expect_to_include(UI::BYE)
+  end
+
   def expect_to_print(message)
     expect(output.string).to eq(message)
   end

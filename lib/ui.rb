@@ -5,10 +5,14 @@ class UI
   include Marks
 
   CLEAR = "\033[H\033[2J"
-  TURN = "\nTURN OF "
-  CELL = "\nChoose a cell to place the mark: "
-  WIN  = "\nCongratulations, "
-  DRAW = "\nIt's a draw!"
+  TURN  = "\nTURN OF "
+  CELL  = "\nChoose a cell to place the mark: "
+  WIN   = "\nCongratulations, "
+  DRAW  = "\nIt's a draw!"
+
+  REPLAY = "\nReplay? (y/n): "
+  YES    = "y"
+  BYE    = "\nByyeeee!"
 
   ERROR_WRONG_INPUT = "ERROR: Wrong input. Please try again: "
 
@@ -38,6 +42,14 @@ class UI
 
   def print_draw_message
     println(DRAW)
+  end
+
+  def replay?
+    ask_for(REPLAY).downcase == YES
+  end
+
+  def bye
+    println(BYE)
   end
 
   private
