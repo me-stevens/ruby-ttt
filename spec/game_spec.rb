@@ -34,13 +34,13 @@ describe Game do
     expect(turn).to have_received(:play_next_turn).once.with(board, :O)
   end
 
-  it "sends the winning mark when it wins" do
+  it "prints a winning message with the correct mark" do
     allow(board).to receive(:win?).and_return(false, false, false, false, false, false, true)
     game.play
     expect(ui).to have_received(:print_win_message).with(:X).once
   end
 
-  it "plays until there is a draw" do
+  it "prints a draw message when there is a draw" do
     allow(board).to receive(:win?).and_return(false, false, false, false, false, false, false, false)
     allow(board).to receive(:full?).and_return(true)
     game.play

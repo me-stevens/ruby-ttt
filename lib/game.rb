@@ -2,13 +2,11 @@ require 'marks'
 
 class Game
 
-  include Marks
-
   def initialize(ui, board, turn)
     @ui    = ui
     @board = board
     @turn  = turn
-    @mark  = X
+    @mark  = Marks::X
   end
 
   def play
@@ -38,11 +36,11 @@ class Game
   end
 
   def full?
-    board.full?(E)
+    board.full?(Marks::E)
   end
 
   def clear_board
-    @board = board.clear(E)
+    @board = board.clear(Marks::E)
   end
 
   def play_next_turn

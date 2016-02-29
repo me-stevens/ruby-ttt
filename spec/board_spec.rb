@@ -26,7 +26,7 @@ describe Board do
   end
 
   it "gets a column of the board" do
-    expect(board.col(0)).to eq([:X, :O, :O])
+    expect(board.column(0)).to eq([:X, :O, :O])
   end
 
   it "gets the diagonal of the board" do
@@ -34,11 +34,11 @@ describe Board do
   end
 
   it "gets the inverse diagonal of the board" do
-    expect(board.inv_diagonal).to eq([:X, :X, :O])
+    expect(board.inverse_diagonal).to eq([:X, :X, :O])
   end
 
   it "gets the whole board" do
-    expect(board.all).to eq(Matrix.rows(rows))
+    expect(board.all).to eq(rows)
   end
 
   it "gets the indexes of a type of cell" do
@@ -53,7 +53,7 @@ describe Board do
       [:O, :X, :O],
       [:O, :O, :X]
     ]
-    expect(board.place_mark(0, :O).all).to eq(Matrix.rows(updated_rows))
+    expect(board.place_mark(0, :O).all).to eq(updated_rows)
   end
 
   it "detects a full board" do
@@ -100,8 +100,8 @@ describe Board do
   end
 
   it "clears the board" do
-    empty = Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])
-    expect(board.clear(:E).all).to eq(empty.all)
+    empty = [[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]]
+    expect(board.clear(:E).all).to eq(empty)
   end
 
 end

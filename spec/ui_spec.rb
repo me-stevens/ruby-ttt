@@ -1,6 +1,5 @@
 require 'board'
 require 'console'
-require 'validator'
 require 'ui'
 
 describe UI do
@@ -8,7 +7,7 @@ describe UI do
   let(:board)  {Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])}
   let(:input)  {StringIO.new}
   let(:output) {StringIO.new}
-  let(:ui)     {described_class.new(Console.new(input, output), Validator.new)}
+  let(:ui)     {described_class.new(Console.new(input, output))}
 
   it "clears the screen" do
     ui.clear

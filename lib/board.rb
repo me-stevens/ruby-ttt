@@ -15,14 +15,14 @@ class Board
   end
 
   def cell(index)
-    board[row_from(index), col_from(index)]
+    board[row_from(index), column_from(index)]
   end
 
   def row(index)
     board.row(index).to_a
   end
 
-  def col(index)
+  def column(index)
     board.column(index).to_a
   end
 
@@ -30,23 +30,21 @@ class Board
     board.each(:diagonal).to_a
   end
 
-  def inv_diagonal
+  def inverse_diagonal
     reverse.diagonal
   end
 
   def all
-    board
+    board.to_a
   end
 
   def indexes_of(content)
-    indexes = []
-    board.each_with_index { |cell, row, col| indexes << index_from(row, col) if cell == content }
-    indexes
+    all.flatten.each_with_index.map { |cell, index| index if cell == content }.compact
   end
 
   def place_mark(cell, mark)
-    new_rows = board.to_a.map { |row| row }
-    new_rows[row_from(cell)][col_from(cell)] = mark
+    new_rows = all
+    new_rows[row_from(cell)][column_from(cell)] = mark
     Board.new(new_rows)
   end
 
@@ -55,7 +53,7 @@ class Board
   end
 
   def win?(player_mark)
-    win_in_rows(player_mark) || win_in_cols(player_mark) || win_in(diagonal, player_mark) || win_in(inv_diagonal, player_mark)
+    win_in_rows?(player_mark) || win_in_columns?(player_mark) || win_in?(diagonal, player_mark) || win_in?(inverse_diagonal, player_mark)
   end
 
   def clear(empty_mark)
@@ -67,34 +65,31 @@ class Board
   attr_reader :board
 
   def reverse
-    Board.new(board.to_a.map { |row| row.reverse })
+    Board.new(all.map { |row| row.reverse })
   end
 
   def row_from(index)
     index / board.column_count
   end
 
-  def col_from(index)
+  def column_from(index)
     index % board.column_count
   end
 
-  def index_from(row, col)
-    index = row * board.column_count + col
+  def index_from(row, column)
+    index = row * board.column_count + column
   end
 
-  def win_in(line, mark)
-    line.each { |cell| return false if cell != mark }
-    true
+  def win_in?(line, mark)
+    line.all? { |cell| cell == mark }
   end
 
-  def win_in_rows(mark)
-    (0...size).each { |index| return true if win_in(row(index), mark) }
-    false
+  def win_in_rows?(mark)
+    (0...size).any? { |index| win_in?(row(index), mark) }
   end
 
-  def win_in_cols(mark)
-    (0...size).each { |index| return true if win_in(col(index), mark) }
-    false
+  def win_in_columns?(mark)
+    (0...size).any? { |index| win_in?(column(index), mark) }
   end
 
 end

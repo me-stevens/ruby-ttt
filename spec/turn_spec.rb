@@ -32,7 +32,7 @@ describe Turn do
     board = Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])
     rows  = [[:X, :E, :E], [:E, :E, :E], [:E, :E, :E]]
     turn  = described_class.new(ui)
-    expect(turn.play_next_turn(board, mark).all).to eq(Matrix.rows(rows))
+    expect(turn.play_next_turn(board, mark).all).to eq(rows)
   end
 
 end

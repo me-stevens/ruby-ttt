@@ -2,8 +2,6 @@ require 'marks'
 
 class UI
 
-  include Marks
-
   CLEAR = "\033[H\033[2J"
   TURN  = "\nTURN OF "
   CELL  = "\nChoose a cell to place the mark: "
@@ -16,9 +14,8 @@ class UI
 
   ERROR_WRONG_INPUT = "ERROR: Wrong input. Please try again: "
 
-  def initialize(console, validator)
+  def initialize(console)
     @console   = console
-    @validator = validator
   end
 
   def clear
@@ -27,8 +24,7 @@ class UI
 
   def print_board(board)
     clear
-    board = format_cells(board)
-    (0...board.size).each { |i| println(board.row(i).join("\t")) }
+    format_cells(board).each { |row| println(row.join("\t")) }
   end
 
   def read_cell(board, mark)
@@ -54,7 +50,7 @@ class UI
 
   private
 
-  attr_reader :console, :validator
+  attr_reader :console
 
   def read
     console.read.chomp
@@ -69,12 +65,17 @@ class UI
   end
 
   def is_valid_cell?(board, cell)
-    validator.is_valid_cell?(board.indexes_of(E), cell)
+    valid_cells(board.indexes_of(Marks::E)).include? cell
+  end
+
+  def valid_cells(empty_cells)
+    empty_cells.map { |empty_cell_index| (empty_cell_index + 1).to_s }
   end
 
   def format_cells(board)
-    i = 0
-    Board.new(board.all.collect { |cell| i += 1; cell == E ? i : cell }.to_a)
+    board.all.flatten.each_with_index.reduce([]) do |memo, (cell, i)|
+      memo << (cell == Marks::E ? i+1 : cell)
+    end.each_slice(board.size).to_a
   end
 
   def ask_for(question)
