@@ -2,9 +2,10 @@ require 'human_player'
 
 class TTT
 
-  def initialize(ui, game)
-    @ui   = ui
-    @game = game
+  def initialize(ui, game, factory)
+    @ui      = ui
+    @game    = game
+    @factory = factory
   end
 
   def run
@@ -14,7 +15,7 @@ class TTT
 
   private
 
-  attr_reader :ui, :game
+  attr_reader :ui, :game, :factory
 
   def replay?
     ui.replay?
@@ -24,13 +25,18 @@ class TTT
     ui.bye
   end
 
-  def play
-    game.play(HumanPlayer.new(ui, :X), HumanPlayer.new(ui, :O))
+  def play(player, opponent)
+    game.play(player, opponent)
+  end
+
+  def create_players(ui, option)
+    factory.create_players(ui, option)
   end
 
   def play_games
     loop do
-      play
+      players = create_players(ui, :HUMAN_VS_HUMAN)
+      play(players.first, players.last)
       break unless replay?
     end
   end
