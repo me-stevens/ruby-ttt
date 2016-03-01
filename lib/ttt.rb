@@ -1,3 +1,5 @@
+require 'human_player'
+
 class TTT
 
   def initialize(ui, game)
@@ -23,7 +25,7 @@ class TTT
   end
 
   def play
-    game.play
+    game.play(HumanPlayer.new(ui, :X), HumanPlayer.new(ui, :O))
   end
 
   def play_games
