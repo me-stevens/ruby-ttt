@@ -3,7 +3,6 @@
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'console'
-require 'validator'
 require 'ui'
 
 require 'turn'
@@ -14,7 +13,7 @@ require 'ttt'
 
 include Marks
 
-ui    = UI.new(Console.new($stdin, $stdout), Validator.new)
+ui    = UI.new(Console.new($stdin, $stdout))
 board = Board.new([[E, E, E], [E, E, E], [E, E, E]])
 turn  = Turn.new(ui)
 game  = Game.new(ui, board, turn)
