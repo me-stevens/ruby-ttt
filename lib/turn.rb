@@ -4,26 +4,31 @@ class Turn
     @ui = ui
   end
 
-  def play_next_turn(board, mark)
-    @board = board
+  def play_next_turn(board, player)
+    @board  = board
+    @player = player
     print_board
-    place_mark(mark)
+    place_mark
   end
 
   private
 
-  attr_reader :ui, :board
+  attr_reader :ui, :board, :player
 
   def print_board
     ui.print_board(board)
   end
 
-  def read_cell(mark)
-    ui.read_cell(board, mark)
+  def move
+    player.make_move(board)
   end
 
-  def place_mark(mark)
-    board.place_mark(read_cell(mark), mark)
+  def mark
+    player.mark
+  end
+
+  def place_mark
+    board.place_mark(move, mark)
   end
 
 end
