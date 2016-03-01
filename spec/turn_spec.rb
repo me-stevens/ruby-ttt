@@ -1,7 +1,7 @@
-require 'ui'
 require 'board'
 require 'human_player'
 require 'turn'
+require 'ui'
 
 describe Turn do
 

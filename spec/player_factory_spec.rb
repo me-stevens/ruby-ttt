@@ -1,6 +1,6 @@
+require 'marks'
 require 'player_factory'
 require 'ui'
-require 'marks'
 
 describe PlayerFactory do
 

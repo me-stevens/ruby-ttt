@@ -43,9 +43,9 @@ class Board
   end
 
   def place_mark(cell, mark)
-    new_rows = board
-    new_rows[row_from(cell)][column_from(cell)] = mark
-    Board.new(new_rows)
+    rows = board
+    rows[row_from(cell)][column_from(cell)] = mark
+    Board.new(rows)
   end
 
   def full?(empty_mark)

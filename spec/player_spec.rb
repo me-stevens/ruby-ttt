@@ -1,5 +1,5 @@
-require 'ui'
 require 'player'
+require 'ui'
 
 describe Player do
 

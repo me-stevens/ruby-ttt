@@ -1,7 +1,7 @@
-require 'ui'
 require 'game'
 require 'player_factory'
 require 'ttt'
+require 'ui'
 
 describe TTT do
 

@@ -1,6 +1,6 @@
+require 'board'
 require 'human_player'
 require 'ui'
-require 'board'
 
 describe HumanPlayer do
 
