@@ -9,14 +9,16 @@ require 'turn'
 require 'board'
 require 'game'
 
+require 'player_factory'
 require 'ttt'
 
 include Marks
 
-ui    = UI.new(Console.new($stdin, $stdout))
-board = Board.new([[E, E, E], [E, E, E], [E, E, E]])
-turn  = Turn.new(ui)
-game  = Game.new(ui, board, turn)
-ttt   = TTT.new(ui, game)
+ui      = UI.new(Console.new($stdin, $stdout))
+board   = Board.new([[E, E, E], [E, E, E], [E, E, E]])
+turn    = Turn.new(ui)
+game    = Game.new(ui, board, turn)
+factory = PlayerFactory.new
+ttt     = TTT.new(ui, game, factory)
 
 ttt.run

@@ -27,8 +27,11 @@ class UI
     format_cells(board).each { |row| println(row.join("\t")) }
   end
 
-  def read_cell(board, mark)
+  def print_turn(mark)
     print(TURN + mark.to_s)
+  end
+
+  def read_cell(board)
     Integer(valid_cell(board)) - 1
   end
 
