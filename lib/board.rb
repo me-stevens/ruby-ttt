@@ -3,11 +3,11 @@ require 'matrix'
 class Board
 
   def initialize(rows)
-    @board = Matrix.rows(rows)
+    @board = rows
   end
 
   def size
-    board.row_count
+    board.size
   end
 
   def cell_count
@@ -15,19 +15,19 @@ class Board
   end
 
   def cell(index)
-    board[row_from(index), column_from(index)]
+    board[row_from(index)][column_from(index)]
   end
 
   def row(index)
-    board.row(index).to_a
+    board[index]
   end
 
   def column(index)
-    board.column(index).to_a
+    board.map { |row| row[index] }
   end
 
   def diagonal
-    board.each(:diagonal).to_a
+    board.map.with_index { |row, index| row[index] }
   end
 
   def inverse_diagonal
@@ -35,15 +35,15 @@ class Board
   end
 
   def all
-    board.to_a
+    board
   end
 
   def indexes_of(content)
-    all.flatten.each_with_index.map { |cell, index| index if cell == content }.compact
+    board.flatten.map.with_index { |cell, index| index if cell == content }.compact
   end
 
   def place_mark(cell, mark)
-    new_rows = all
+    new_rows = board
     new_rows[row_from(cell)][column_from(cell)] = mark
     Board.new(new_rows)
   end
@@ -57,7 +57,7 @@ class Board
   end
 
   def clear(empty_mark)
-    Board.new(Matrix.build(size) { empty_mark }.to_a)
+    Board.new(Array.new(cell_count, empty_mark).each_slice(size).to_a)
   end
 
   private
@@ -65,19 +65,19 @@ class Board
   attr_reader :board
 
   def reverse
-    Board.new(all.map { |row| row.reverse })
+    Board.new(board.map { |row| row.reverse })
   end
 
   def row_from(index)
-    index / board.column_count
+    index / board.size
   end
 
   def column_from(index)
-    index % board.column_count
+    index % board.size
   end
 
   def index_from(row, column)
-    index = row * board.column_count + column
+    index = row * board.size + column
   end
 
   def win_in?(line, mark)

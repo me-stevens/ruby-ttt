@@ -15,7 +15,7 @@ class UI
   ERROR_WRONG_INPUT = "ERROR: Wrong input. Please try again: "
 
   def initialize(console)
-    @console   = console
+    @console = console
   end
 
   def clear
@@ -73,8 +73,8 @@ class UI
   end
 
   def format_cells(board)
-    board.all.flatten.each_with_index.reduce([]) do |memo, (cell, i)|
-      memo << (cell == Marks::E ? i+1 : cell)
+    board.all.flatten.each_with_index.reduce([]) do |formatted_cell, (cell, i)|
+      formatted_cell << (cell == Marks::E ? i+1 : cell)
     end.each_slice(board.size).to_a
   end
 
