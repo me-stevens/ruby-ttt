@@ -6,10 +6,11 @@ class Game
     @ui    = ui
     @board = board
     @turn  = turn
-    @mark  = Marks::X
   end
 
-  def play
+  def play(player1, player2)
+    @player1 = player1
+    @player2 = player2
     play_until_game_over
     print_game_over_message
     clear_board
@@ -17,7 +18,7 @@ class Game
 
   private
 
-  attr_reader :ui, :board, :turn, :mark
+  attr_reader :ui, :board, :turn, :player, :player1, :player2
 
   def print_board
     ui.print_board(board)
@@ -43,19 +44,24 @@ class Game
     @board = board.clear(Marks::E)
   end
 
+  def mark
+    player.mark
+  end
+
   def play_next_turn
-    turn.play_next_turn(board, mark)
+    turn.play_next_turn(board, player)
   end
 
   def opponent
-    Marks.opponent(mark)
+    player == player1 ? player2 : player1
   end
 
   def play_until_game_over
+    @player = player1
     loop do
-      @board = play_next_turn
+      @board  = play_next_turn
       break if game_over
-      @mark  = opponent
+      @player = opponent
     end
   end
 
