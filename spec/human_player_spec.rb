@@ -12,13 +12,13 @@ describe HumanPlayer do
   end
 
   it "prints the turn" do
-    board = instance_double(Board).as_null_object
+    board = Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])
     human.make_move(board)
     expect(ui).to have_received(:print_turn).with(:X)
   end
 
   it "makes a move" do
-    board = instance_double(Board).as_null_object
+    board = Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])
     allow(ui).to receive(:read_cell).and_return(0)
     expect(human.make_move(board)).to eq(0)
   end

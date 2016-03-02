@@ -1,6 +1,6 @@
 require 'player'
 
-class HumanPlayer < Player
+class RobotPlayer < Player
 
   def make_move(board)
     super
@@ -10,7 +10,9 @@ class HumanPlayer < Player
   private
 
   def read_cell(board)
-    ui.read_cell(board)
+    minimax(board, mark)
   end
 
+  def minimax(current_board, current_player)
+  end
 end
