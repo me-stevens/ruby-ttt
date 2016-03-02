@@ -7,12 +7,8 @@ describe TTT do
 
   let(:ui)      {instance_double(UI).as_null_object}
   let(:game)    {instance_double(Game).as_null_object}
-  let(:factory) {instance_double(PlayerFactory).as_null_object}
+  let(:factory) {PlayerFactory.new(ui)}
   let(:ttt)     {described_class.new(ui, game, factory)}
-
-  before :each do
-    allow(factory).to receive(:create_players).and_return([nil, nil])
-  end
 
   it "plays one game" do
     allow(ui).to receive(:replay?).and_return(false)

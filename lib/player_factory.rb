@@ -1,6 +1,10 @@
 class PlayerFactory
 
-  def create_players(ui, option)
+  def initialize(ui)
+    @ui = ui
+  end
+
+  def create_players(option)
     if (option == :HUMAN_VS_HUMAN)
       [
         HumanPlayer.new(ui, Marks::X),
@@ -8,5 +12,9 @@ class PlayerFactory
       ]
     end
   end
+
+  private
+
+  attr_reader :ui
 
 end

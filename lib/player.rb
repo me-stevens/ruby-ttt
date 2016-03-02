@@ -1,17 +1,14 @@
 class Player
 
-  def initialize(ui, chip)
-    @ui   = ui
-    @chip = chip
-  end
+  attr_reader :mark
 
-  def mark
-    chip
+  def initialize(ui, mark)
+    @ui   = ui
+    @mark = mark
   end
 
   private
 
-  attr_reader :ui, :chip
+  attr_reader :ui
 
 end
-

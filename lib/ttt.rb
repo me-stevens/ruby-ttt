@@ -29,13 +29,13 @@ class TTT
     game.play(player, opponent)
   end
 
-  def create_players(ui, option)
-    factory.create_players(ui, option)
+  def create_players(option)
+    factory.create_players(option)
   end
 
   def play_games
     loop do
-      players = create_players(ui, :HUMAN_VS_HUMAN)
+      players = create_players(:HUMAN_VS_HUMAN)
       play(players.first, players.last)
       break unless replay?
     end

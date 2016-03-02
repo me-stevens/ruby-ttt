@@ -18,7 +18,7 @@ ui      = UI.new(Console.new($stdin, $stdout))
 board   = Board.new([[E, E, E], [E, E, E], [E, E, E]])
 turn    = Turn.new(ui)
 game    = Game.new(ui, board, turn)
-factory = PlayerFactory.new
+factory = PlayerFactory.new(ui)
 ttt     = TTT.new(ui, game, factory)
 
 ttt.run

@@ -3,8 +3,7 @@ require 'ui'
 
 describe Player do
 
-  let(:ui)     {instance_double(UI).as_null_object}
-  let(:player) {described_class.new(ui, :X)}
+  let(:player) {described_class.new(nil, :X)}
 
   it "retrieves the player's mark" do
     expect(player.mark).to eq(:X)
