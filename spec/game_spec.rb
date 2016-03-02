@@ -13,7 +13,7 @@ describe Game do
   let(:opponent) {instance_double(HumanPlayer).as_null_object}
   let(:game)     {described_class.new(ui, board, turn)}
 
-  before :each do
+  before do
     allow(turn).to receive(:play_next_turn).and_return(board)
     allow(board).to receive(:full?).and_return(false)
   end
