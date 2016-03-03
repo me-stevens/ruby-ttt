@@ -23,4 +23,10 @@ describe PlayerFactory do
     expect(players.last.class).to eq(HumanPlayer)
   end
 
+  it "generates a human player and a robot player" do
+    players = factory.create_players(:HUMAN_VS_ROBOT)
+    expect(players.first.class).to eq(HumanPlayer)
+    expect(players.last.class).to eq(RobotPlayer)
+  end
+
 end

@@ -1,3 +1,7 @@
+require 'human_player'
+require 'robot_player'
+require 'options'
+
 class PlayerFactory
 
   def initialize(ui)
@@ -5,10 +9,15 @@ class PlayerFactory
   end
 
   def create_players(option)
-    if (option == :HUMAN_VS_HUMAN)
+    if (option == Options::HUMAN_HUMAN)
       [
         HumanPlayer.new(ui, Marks::X),
         HumanPlayer.new(ui, Marks::O)
+      ]
+    elsif (option == Options::HUMAN_ROBOT)
+      [
+        HumanPlayer.new(ui, Marks::X),
+        RobotPlayer.new(ui, Marks::O)
       ]
     end
   end
