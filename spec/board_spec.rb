@@ -56,6 +56,15 @@ describe Board do
     expect(board.place_mark(0, :O).all).to eq(updated_rows)
   end
 
+  it "doesn't modify the content of the previous board when placing a mark" do
+    updated_rows = [
+      [:O, :O, :X],
+      [:O, :X, :O],
+      [:O, :O, :X]
+    ]
+    expect(rows).not_to eq(updated_rows)
+  end
+
   it "detects a full board" do
     expect(board.full?(:E)).to eq(true)
   end

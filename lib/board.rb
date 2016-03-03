@@ -1,5 +1,3 @@
-require 'matrix'
-
 class Board
 
   def initialize(rows)
@@ -43,7 +41,7 @@ class Board
   end
 
   def place_mark(cell, mark)
-    rows = board
+    rows = board.reduce([]) { |memo, row| memo << row.dup }
     rows[row_from(cell)][column_from(cell)] = mark
     Board.new(rows)
   end

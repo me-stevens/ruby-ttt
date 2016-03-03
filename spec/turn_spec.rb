@@ -27,8 +27,7 @@ describe Turn do
 
   it "places the mark in the board" do
     allow(player).to receive(:mark).and_return(mark)
-    turn.play_next_turn(board, player)
-    expect(board.cell(0)).to eq(mark)
+    expect(turn.play_next_turn(board, player).cell(0)).to eq(mark)
   end
 
   it "returns the updated board" do
