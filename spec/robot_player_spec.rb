@@ -45,7 +45,7 @@ describe RobotPlayer do
     expect(robot.game_is_not_over?(board, :X)).to eq(false)
   end
 
-  it "heuristics are zero if there is no robot win" do
+  it "heuristics are zero if there is no win" do
     expect(robot.heuristics(board, :O)).to eq(0)
   end
 
@@ -54,8 +54,8 @@ describe RobotPlayer do
     expect(robot.heuristics(board, :O)).to eq(10)
   end
 
-  it "heuristics are -10 for the opponent if there is a robot win" do
-    board = Board.new([[:O, :O, :O], [:E, :E, :E], [:E, :E, :E]])
+  it "heuristics are -10 for the opponent if there is an opponent win" do
+    board = Board.new([[:X, :X, :X], [:E, :E, :E], [:E, :E, :E]])
     expect(robot.heuristics(board, :X)).to eq(-10)
   end
 
@@ -85,6 +85,60 @@ describe RobotPlayer do
 
   it "should place the mark in the only available spot" do
     expect(robot.make_move(board)).to eq(7)
+  end
+
+  it "should place the mark in the winning position for rows" do
+    board = Board.new([
+      [:O, :O, :E],
+      [:X, :X, :O],
+      [:E, :X, :X]
+    ])
+    expect(robot.make_move(board)).to eq(2)
+  end
+
+  it "should block the opponent from winning in rows" do
+    board = Board.new([
+      [:X, :E, :X],
+      [:X, :O, :O],
+      [:E, :X, :O]
+    ])
+    expect(robot.make_move(board)).to eq(1)
+  end
+
+  it "should place the mark in the winning position for columns" do
+    board = Board.new([
+      [:O, :X, :O],
+      [:X, :E, :O],
+      [:X, :X, :E]
+    ])
+    expect(robot.make_move(board)).to eq(8)
+  end
+
+  it "should block the opponent from winning in columns" do
+    board = Board.new([
+      [:X, :O, :X],
+      [:X, :O, :O],
+      [:E, :X, :E]
+    ])
+    expect(robot.make_move(board)).to eq(6)
+  end
+
+  it "should place the mark in the winning position for diagonal" do
+    board = Board.new([
+      [:O, :X, :X],
+      [:X, :O, :O],
+      [:E, :X, :E]
+    ])
+    expect(robot.make_move(board)).to eq(8)
+  end
+
+  it "should place the mark in the winning position for inverse diagonal" do
+    board = Board.new([
+      [:X, :X, :O],
+      [:O, :O, :X],
+      [:E, :X, :E]
+    ])
+    expect(robot.make_move(board)).to eq(6)
   end
 
 end

@@ -12,6 +12,20 @@ class RobotPlayer < Player
     index = initialize_index(current_board)
     score = initialize_score(current_player)
 
+    empty_cells(current_board).each do |empty|
+      temp_index = empty
+
+      temp_board = current_board.place_mark(temp_index, current_player)
+
+      temp_score = game_is_not_over?(temp_board, current_player) ?
+        minimax(temp_board, Marks.opponent(current_player)).last :
+        heuristics(temp_board, current_player)
+
+      if better_score?(current_player, temp_score, score)
+        index = temp_index
+        score = temp_score
+      end
+    end
 
     [index, score]
   end
@@ -33,7 +47,7 @@ class RobotPlayer < Player
   end
 
   def heuristics(temp_board, current_player)
-    if temp_board.win?(mark)
+    if temp_board.win?(current_player)
       current_player == mark ? 10 : -10
     else
       0
