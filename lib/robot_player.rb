@@ -47,11 +47,7 @@ class RobotPlayer < Player
   end
 
   def heuristics(temp_board, current_player)
-    if temp_board.win?(current_player)
-      current_player == mark ? 10 : -10
-    else
-      0
-    end
+    temp_board.win?(current_player) ? win_heuristics(current_player) : draw_heuristics
   end
 
   def better_score?(current_player, temp_score, score)
@@ -63,6 +59,14 @@ class RobotPlayer < Player
 
   def game_over?(temp_board, current_player)
     temp_board.win?(current_player) || temp_board.full?(Marks::E)
+  end
+
+  def win_heuristics(current_player)
+    current_player == mark ? 10 : -10
+  end
+
+  def draw_heuristics
+    0
   end
 
 end
