@@ -35,7 +35,7 @@ class TTT
 
   def play_games
     loop do
-      players = create_players(:HUMAN_VS_HUMAN)
+      players = create_players(:HUMAN_VS_ROBOT)
       play(players.first, players.last)
       break unless replay?
     end
