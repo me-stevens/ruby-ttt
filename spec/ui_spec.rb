@@ -2,7 +2,7 @@ require 'board'
 require 'console'
 require 'ui'
 
-describe UI do
+RSpec.describe UI do
 
   let(:board)  {Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])}
   let(:input)  {StringIO.new}

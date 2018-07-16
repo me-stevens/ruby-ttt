@@ -1,6 +1,6 @@
 require 'board'
 
-describe Board do
+RSpec.describe Board do
 
   let(:rows) {[
     [:X, :O, :X],

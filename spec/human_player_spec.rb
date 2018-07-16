@@ -2,7 +2,7 @@ require 'board'
 require 'human_player'
 require 'ui'
 
-describe HumanPlayer do
+RSpec.describe HumanPlayer do
 
   let(:ui)    {instance_double(UI).as_null_object}
   let(:human) {described_class.new(ui, :X)}

@@ -3,7 +3,7 @@ require 'human_player'
 require 'turn'
 require 'ui'
 
-describe Turn do
+RSpec.describe Turn do
 
   let(:ui)     {instance_double(UI).as_null_object}
   let(:board)  {Board.new([[:E, :E, :E], [:E, :E, :E], [:E, :E, :E]])}

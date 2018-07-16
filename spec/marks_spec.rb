@@ -1,6 +1,6 @@
 require 'marks'
 
-describe Marks do
+RSpec.describe Marks do
 
   it "swaps X to O" do
     mark = Marks::X
