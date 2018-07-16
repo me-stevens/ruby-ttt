@@ -1,11 +1,12 @@
-class Console 
+# frozen_string_literal: true
 
+class Console
   def initialize(input, output)
     @input  = input
     @output = output
   end
 
-  def write(message = "")
+  def write(message = '')
     output.print(message)
   end
 
@@ -14,11 +15,10 @@ class Console
   end
 
   def read
-    input.gets()
+    input.gets
   end
 
   private
 
   attr_reader :input, :output
-
 end

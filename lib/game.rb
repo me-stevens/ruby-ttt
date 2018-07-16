@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'marks'
 
 class Game
-
-  def initialize(ui, board, turn)
+  def initialize(ui, board, turn) # rubocop:disable Naming/UncommunicativeMethodParamName, Metrics/LineLength
     @ui    = ui
     @board = board
     @turn  = turn
@@ -67,5 +68,4 @@ class Game
     print_board
     win? ? print_win_message : print_draw_message
   end
-
 end

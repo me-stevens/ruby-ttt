@@ -1,5 +1,6 @@
-class Board
+# frozen_string_literal: true
 
+class Board
   def initialize(rows)
     @board = rows
   end
@@ -37,7 +38,10 @@ class Board
   end
 
   def indexes_of(content)
-    board.flatten.map.with_index { |cell, index| index if cell == content }.compact
+    board.flatten
+         .map
+         .with_index { |cell, index| index if cell == content }
+         .compact
   end
 
   def place_mark(cell, mark)
@@ -47,11 +51,14 @@ class Board
   end
 
   def full?(empty_mark)
-    indexes_of(empty_mark).count == 0
+    indexes_of(empty_mark).count.zero?
   end
 
   def win?(player_mark)
-    win_in_rows?(player_mark) || win_in_columns?(player_mark) || win_in?(diagonal, player_mark) || win_in?(inverse_diagonal, player_mark)
+    win_in_rows?(player_mark) ||
+      win_in_columns?(player_mark) ||
+      win_in?(diagonal, player_mark) ||
+      win_in?(inverse_diagonal, player_mark)
   end
 
   def clear(empty_mark)
@@ -63,7 +70,7 @@ class Board
   attr_reader :board
 
   def reverse
-    Board.new(board.map { |row| row.reverse })
+    Board.new(board.map(&:reverse))
   end
 
   def row_from(index)
@@ -75,7 +82,7 @@ class Board
   end
 
   def index_from(row, column)
-    index = row * board.size + column
+    row * board.size + column
   end
 
   def win_in?(line, mark)
@@ -89,5 +96,4 @@ class Board
   def win_in_columns?(mark)
     (0...size).any? { |index| win_in?(column(index), mark) }
   end
-
 end
