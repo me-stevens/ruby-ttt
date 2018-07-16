@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'human_player'
 
 class TTT
-
-  def initialize(ui, game, factory)
+  def initialize(ui, game, factory) # rubocop:disable Naming/UncommunicativeMethodParamName, Metrics/LineLength
     @ui      = ui
     @game    = game
     @factory = factory
@@ -40,5 +41,4 @@ class TTT
       break unless replay?
     end
   end
-
 end

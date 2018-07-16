@@ -1,6 +1,7 @@
-class Turn
+# frozen_string_literal: true
 
-  def initialize(ui)
+class Turn
+  def initialize(ui) # rubocop:disable Naming/UncommunicativeMethodParamName
     @ui = ui
   end
 
@@ -30,5 +31,4 @@ class Turn
   def place_mark
     board.place_mark(move, mark)
   end
-
 end

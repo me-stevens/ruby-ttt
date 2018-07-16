@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Marks
   X = :X
   O = :O
@@ -6,5 +8,4 @@ module Marks
   def self.opponent(mark)
     mark == X ? O : X
   end
-
 end

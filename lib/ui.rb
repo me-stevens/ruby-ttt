@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'marks'
 
 class UI
-
   CLEAR = "\033[H\033[2J"
   TURN  = "\nTURN OF "
   CELL  = "\nChoose a cell to place the mark: "
@@ -9,10 +10,10 @@ class UI
   DRAW  = "\nIt's a draw!"
 
   REPLAY = "\nReplay? (y/n): "
-  YES    = "y"
+  YES    = 'y'
   BYE    = "\nByyeeee!"
 
-  ERROR_WRONG_INPUT = "ERROR: Wrong input. Please try again: "
+  ERROR_WRONG_INPUT = 'ERROR: Wrong input. Please try again: '
 
   def initialize(console)
     @console = console
@@ -63,11 +64,11 @@ class UI
     console.write(message)
   end
 
-  def println(message = "")
+  def println(message = '')
     console.writeln(message)
   end
 
-  def is_valid_cell?(board, cell)
+  def valid_cell?(board, cell)
     valid_cells(board.indexes_of(Marks::E)).include? cell
   end
 
@@ -77,7 +78,7 @@ class UI
 
   def format_cells(board)
     board.all.flatten.each_with_index.reduce([]) do |formatted_cell, (cell, i)|
-      formatted_cell << (cell == Marks::E ? i+1 : cell)
+      formatted_cell << (cell == Marks::E ? i + 1 : cell)
     end.each_slice(board.size).to_a
   end
 
@@ -89,7 +90,7 @@ class UI
   def valid_cell(board)
     cell = ask_for(CELL)
     loop do
-      break if is_valid_cell?(board, cell)
+      break if valid_cell?(board, cell)
       error_wrong_input
       cell = read
     end
@@ -99,5 +100,4 @@ class UI
   def error_wrong_input
     print(ERROR_WRONG_INPUT)
   end
-
 end
