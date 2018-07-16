@@ -2,7 +2,7 @@ require 'board'
 require 'robot_player'
 require 'ui'
 
-describe RobotPlayer do
+RSpec.describe RobotPlayer do
 
   let(:ui)    {instance_double(UI).as_null_object}
   let(:board) {Board.new([

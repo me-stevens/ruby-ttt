@@ -2,7 +2,7 @@ require 'marks'
 require 'player_factory'
 require 'ui'
 
-describe PlayerFactory do
+RSpec.describe PlayerFactory do
 
   let(:factory) {described_class.new(nil)}
 

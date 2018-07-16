@@ -4,7 +4,7 @@ require 'human_player'
 require 'turn'
 require 'ui'
 
-describe Game do
+RSpec.describe Game do
 
   let(:ui)       {instance_double(UI).as_null_object}
   let(:board)    {instance_double(Board).as_null_object}

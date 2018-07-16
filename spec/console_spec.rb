@@ -1,6 +1,6 @@
 require 'console'
 
-describe Console do
+RSpec.describe Console do
 
   let(:output) {StringIO.new}
 

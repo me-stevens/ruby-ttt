@@ -3,7 +3,7 @@ require 'player_factory'
 require 'ttt'
 require 'ui'
 
-describe TTT do
+RSpec.describe TTT do
 
   let(:ui)      {instance_double(UI).as_null_object}
   let(:game)    {instance_double(Game).as_null_object}
