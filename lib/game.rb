@@ -56,6 +56,7 @@ class Game
     loop do
       @board = play_next_turn
       break if game_over
+
       players.reverse!
     end
   end

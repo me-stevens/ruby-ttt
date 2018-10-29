@@ -91,6 +91,7 @@ class UI
     cell = ask_for(CELL)
     loop do
       break if valid_cell?(board, cell)
+
       error_wrong_input
       cell = read
     end
